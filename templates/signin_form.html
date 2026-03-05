@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <form method="post">
+        <!-- User input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="username">Username</label>
+            <input type="text" id="username" class="form-control" name="username" value="{{ username }}" required />
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" class="form-control" name="password" value="{{ password }}" required />
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary mb-4">{% block submit_label %}{% endblock %}</button>
+        <div class="text-center">
+            {% block post_text %}{% endblock %}
+        </div>
+    </form>
+</div>
+{% endblock %}

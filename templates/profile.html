@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="btn-group" role="navigation" aria-label="navbar">
+    <button onclick="on_previous()" class="btn btn-primary" {% if is_first %} disabled {% endif %}>Previous</button>
+    <button onclick="on_next()" class="btn btn-primary" {% if is_last %} disabled {% endif %}>Next</button>
+</div>
+
+<nav>
+
+</nav>
+
+{% for post in posts %}
+<div class="card">
+    <div class="card-body">
+        <a href="/profile/{{ post['username'] }}">{{ post["username"] }}</a>: {{ post["text"] }}
+    </div>
+</div>
+{% endfor %}
+
+<script>
+    function on_next() {
+        const url_params = new URLSearchParams(window.location.search);
+        if (url_params.has("page")) {
+            var page = parseInt(url_params.get("page"), 10);
+            if (Number.isNaN(page)) {
+                page = 1;
+            } else {
+                page += 1;
+            }
+        } else {
+            page = 2;
+        }
+        window.location.href = `/profile/{{ username }}?page=${page}`
+    }
+    function on_previous() {
+        const url_params = new URLSearchParams(window.location.search);
+        if (url_params.has("page")) {
+            var page = parseInt(url_params.get("page"), 10);
+            if (Number.isNaN(page)) {
+                page = 1;
+            } else {
+                page -= 1;
+            }
+        } else {
+            page = 1;
+        }
+        window.location.href = `/profile/{{ username }}?page=${page}`
+    }
+</script>
+
+{% endblock %}
