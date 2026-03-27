@@ -124,8 +124,8 @@ def signup():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        if not username or len(username) < 8:
-            flash("Please provide username of at least length 8")
+        if not username:
+            flash("Please provide username")
             return render_template("signup.html", username=username, password=password)
 
         db = mongo.users
