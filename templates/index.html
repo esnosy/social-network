@@ -30,7 +30,7 @@
 {% for post in posts %}
 <div class="card">
     <div class="card-body">
-        <a href="/profile/{{ post['username'] }}">{{ post["username"] }}</a>: {{ post["text"] }}
+        <a href="/profile/{{ post['users']['name'] }}">{{ post['users']['name'] }}</a>: {{ post["text"] }}
     </div>
 </div>
 {% endfor %}
